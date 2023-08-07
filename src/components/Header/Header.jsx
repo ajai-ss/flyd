@@ -11,7 +11,7 @@ import { HeaderWrapper } from './Header.styled';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import PassengerSelection from '../../app/passangerSelection';
+import { PassengerSelection } from '../PassengerSelection';
 
 
 const Header = () => {
