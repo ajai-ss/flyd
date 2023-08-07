@@ -12,7 +12,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { PassengerSelection } from '../PassengerSelection';
-
+import { CabinSelection } from '../CabinSelection';
 
 const Header = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -74,9 +74,16 @@ const Header = () => {
                         </button> */}
                         <button class="btn_null menu_btn"></button>
                         <Dialog open={open} onClose={handleClose}>
-                            <DialogTitle>Passanger</DialogTitle>
+                            <DialogTitle>Cabin</DialogTitle>
+                            <DialogContent>
+                                <CabinSelection />
+
+                            </DialogContent>
+                            <DialogTitle>Passenger</DialogTitle>
+
                             <DialogContent>
                                 <PassengerSelection />
+
                             </DialogContent>
                         </Dialog>
                     </div>
