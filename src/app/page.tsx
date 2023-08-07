@@ -16,8 +16,12 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import PassengerSelection from './passangerSelection';
 
-const Search = styled('div')(({ theme }) => ({
+const Search = styled('div')(({ theme }: any) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -33,7 +37,7 @@ const Search = styled('div')(({ theme }) => ({
   },
 }));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
+const SearchIconWrapper = styled('div')(({ theme }: any) => ({
   padding: theme.spacing(0, 2),
   height: '100%',
   position: 'absolute',
@@ -43,7 +47,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   justifyContent: 'center',
 }));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
+const StyledInputBase = styled(InputBase)(({ theme }: any) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
@@ -61,6 +65,15 @@ export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -74,6 +87,7 @@ export default function Header() {
   };
 
   const handleMenuClose = () => {
+    handleClickOpen();
     setAnchorEl(null);
     handleMobileMenuClose();
   };
@@ -231,6 +245,12 @@ export default function Header() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Passanger</DialogTitle>
+        <DialogContent>
+          <PassengerSelection/>
+        </DialogContent>
+      </Dialog>
     </Box>
   );
 }
