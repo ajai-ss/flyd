@@ -1,15 +1,15 @@
-import Header from '../src/components/Header/Header';
-import Footer from '../src/components/Footer/Footer';
-import FlightStatus from '../src/components/FlightStatus/FlightStatus';
-import { DatePicker } from '../src';
+import Header from '../src/components/Header/Header'
+import SearchFlight from '../src/components/SearchFlight/SearchFlight'
+import Footer from '../src/components/Footer/Footer'
+import FlightStatus from '../src/components/FlightStatus/FlightStatus'
 
 export default function Page() {
   return (
     <>
-      <Header/>
-      <FlightStatus/>
-      <DatePicker />
-      <Footer/>
+      <Header />
+      <SearchFlight />
+      <FlightStatus />
+      <Footer />
     </>
   )
 }
