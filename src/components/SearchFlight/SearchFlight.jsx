@@ -9,6 +9,11 @@ import { SearchWrapper } from './SearchFlight.styled'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import Autocomplete from '@mui/material/Autocomplete'
+import { DatePicker } from '../DatePicker/index'
+import ChevronRightIcon from '@mui/icons-material/ChevronRight'
+import OutlinedInput from '@mui/material/OutlinedInput'
+import ListItemText from '@mui/material/ListItemText'
+import Checkbox from '@mui/material/Checkbox'
 
 const SearchFlight = () => {
   const [consumer, setConsumer] = React.useState('')
@@ -443,6 +448,38 @@ const SearchFlight = () => {
     { code: 'ZW', label: 'Zimbabwe', phone: '263' },
   ]
 
+  const ITEM_HEIGHT = 48
+  const ITEM_PADDING_TOP = 8
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  }
+
+  const names = ['All Cabins', 'Economy', 'Business']
+
+  const [personName, setPersonName] = React.useState([])
+  const handleChangeClass = (event) => {
+    const {
+      target: { value },
+    } = event
+    setPersonName(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value
+    )
+  }
+
+  // const [num, setNum] = React.useState()
+  // const handleChangePromo = (e) => {
+  //   const regex = /^[0-9\b]+$/
+  //   if (e.target.value === '' || regex.test(e.target.value)) {
+  //     setNum(e.target.value)
+  //   }
+  // }
+
   return (
     <SearchWrapper>
       <div className="spacing">
@@ -573,7 +610,39 @@ const SearchFlight = () => {
                   )}
                 />
               </div>
-              <div>Date Picker</div>
+              <div className="datePickerWrapper">
+                <DatePicker />
+              </div>
+              <div className="passenger">Passengers</div>
+              <div className="cabin">
+                <FormControl sx={{ m: 1, width: 300 }}>
+                  <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
+                  <Select
+                    labelId="demo-multiple-checkbox-label"
+                    id="demo-multiple-checkbox"
+                    multiple
+                    value={personName}
+                    onChange={handleChangeClass}
+                    input={<OutlinedInput label="All Cabins" />}
+                    renderValue={(selected) => selected.join(', ')}
+                    MenuProps={MenuProps}
+                  >
+                    {names.map((name) => (
+                      <MenuItem key={name} value={name}>
+                        <Checkbox checked={personName.indexOf(name) > -1} />
+                        <ListItemText primary={name} />
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
+              <div className="promoCode">
+                <TextField
+                  id="standard-basic"
+                  label="Promo Code"
+                  variant="standard"
+                />
+              </div>
             </div>
           </div>
           <div className="searchBar">
@@ -581,9 +650,14 @@ const SearchFlight = () => {
               type="search"
               id="search"
               label="Search"
-              sx={{ width: 600 }}
+              sx={{ width: 300 }}
               variant="standard"
             />
+            <div className="searchExpand">
+              <a className="d-flex align-items-center" href="#">
+                Expand Search <ChevronRightIcon fontSize="small" />
+              </a>
+            </div>
           </div>
         </div>
         {/* End Search Flight Widget Form*/}

@@ -55,8 +55,32 @@ export const SearchWrapper = styled.div`
   }
   .searchBar .MuiFormControl-root {
     width: auto;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
   }
-  .searchBar .MuiInput-underline::before {
+  .searchBar .MuiInput-underline::before,
+  .searchBar .MuiInput-underline::after {
     border-bottom: 0;
+  }
+  .searchBar .MuiFormLabel-root {
+    color: #c5c5c5;
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+    font-weight: 600;
+    z-index: 9;
+  }
+  .searchBar .MuiInputBase-input {
+    background-color: #fff;
+    border-radius: 4px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .searchExpand a {
+    justify-content: end;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
   }
 `
